@@ -2,12 +2,19 @@ import { useState } from 'react'
 import castielImg from './assets/hero.png'
 import reactLogo from './assets/images.jpeg'
 import viteLogo from './assets/flash.png'
+import { FaGitlab, FaWhatsapp } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  
+  const saveToLocalStorage = (count : number) => {
+    localStorage.setItem('count', String(count));
+  }
 
-  return (
+    return (
     <>
       <section id="center">
         <div className="hero">
@@ -15,43 +22,31 @@ function App() {
           <img src={reactLogo} className="framework" alt="React logo" />
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+
+
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => {
+            const newCount = count + 1;
+            setCount(newCount);
+            saveToLocalStorage(newCount);
+            console.log('Count saved to localStorage:', newCount);
+          }}
         >
           Count is {count}
         </button>
+      
       </section>
       <div className="ticks"></div>
 
       <section id="next-steps">
         <div id="docs">
           <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
+            <use href="/icons.svg#docs-icon"></use>
           </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <h2>Next steps</h2>
+          <p>Learn more about Vite</p>
         </div>
         <div id="social">
           <svg className="icon" role="presentation" aria-hidden="true">
@@ -67,9 +62,11 @@ function App() {
                   role="presentation"
                   aria-hidden="true"
                 >
-                  <use href="/icons.svg#github-icon"></use>
+                  <FaGitlab
+                  color="#25D366"
+                   />
                 </svg>
-                GitHub
+                GitLab
               </a>
             </li>
             <li>
@@ -79,9 +76,11 @@ function App() {
                   role="presentation"
                   aria-hidden="true"
                 >
-                  <use href="/icons.svg#discord-icon"></use>
+                  <FaWhatsapp 
+                    color="#25D366"
+                  />
                 </svg>
-                Discord
+                Whatsapp
               </a>
             </li>
             <li>
@@ -91,21 +90,11 @@ function App() {
                   role="presentation"
                   aria-hidden="true"
                 >
-                  <use href="/icons.svg#x-icon"></use>
+                 <FaYoutube 
+                  color="#25D366"
+                 />
                 </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
+                Youtube
               </a>
             </li>
           </ul>
